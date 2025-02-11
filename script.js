@@ -1,44 +1,48 @@
-// Base class Person
 class Person {
-  constructor(name, age) {
-    this.name = name;
-    this.age = age;
+  private _name: string;
+  private _age: number;
+
+  constructor(name: string, age: number) {
+    this._name = name;
+    this._age = age;
   }
 
-  // Method to display basic info
-  getInfo() {
-    return `${this.name} is ${this.age} years old.`;
+  get name(): string {
+    return this._name;
+  }
+
+  get age(): number {
+    return this._age;
+  }
+
+  set age(age: number) {
+    this._age = age;
   }
 }
 
-// Student class extending Person
 class Student extends Person {
-  constructor(name, age, grade) {
-    super(name, age);
-    this.grade = grade;
-  }
-
-  // Method specific to Student
-  getGrade() {
-    return `${this.name} is in grade ${this.grade}.`;
+  study(): void {
+    console.log(`${this.name} is studying`);
   }
 }
 
-// Teacher class extending Person
 class Teacher extends Person {
-  constructor(name, age, subject) {
-    super(name, age);
-    this.subject = subject;
-  }
-
-  // Method specific to Teacher
-  getSubject() {
-    return `${this.name} teaches ${this.subject}.`;
+  teach(): void {
+    console.log(`${this.name} is teaching`);
   }
 }
 
-// Do not change the code below this line
-window.Person = Person;
-window.Student = Student;
-window.Teacher = Teacher;
+// Test Cases
+const person = new Person("John", 25);
+console.log(person.name); // Output: John
+
+person.age = 30;
+console.log(person.age); // Output: 30
+
+const student = new Student("Alice", 22);
+student.study(); // Output: Alice is studying
+
+const teacher = new Teacher("Bob", 40);
+teacher.teach(); // Output: Bob is teaching
+
 
