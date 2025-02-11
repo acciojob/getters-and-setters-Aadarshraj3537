@@ -1,49 +1,31 @@
-class Rectangle {
-  constructor(width, height) {
-    if (!Number.isInteger(width) || !Number.isInteger(height) || width <= 0 || height <= 0) {
-      throw new Error("Width and height must be positive integers.");
-    }
-    this._width = width;
-    this._height = height;
-  }
+class Person {
+	constructor(name, age){
+		this._name = name;
+		this._age = age;
+	}
 
-  get width() {
-    return this._width;
-  }
+	get name(){
+		return this._name;
+	}
 
-  get height() {
-    return this._height;
-  }
-
-  getArea() {
-    return this._width * this._height;
-  }
+	set age(age){
+		this ._age = age;
+	}
 }
 
-class Square extends Rectangle {
-  constructor(side) {
-    if (!Number.isInteger(side) || side <= 0) {
-      throw new Error("Side must be a positive integer.");
-    }
-    super(side, side);
-  }
-
-  getPerimeter() {
-    return 4 * this.width;
-  }
+class Student extends Person {
+	study(){
+		console.log(${this.name} is studying)
+	}
 }
 
-// Example usage
-const rectangle = new Rectangle(5, 10);
-console.log(rectangle.width); // Output: 5
-console.log(rectangle.height); // Output: 10
-console.log(rectangle.getArea()); // Output: 50
+class Teacher extends Person {
+	teach(){
+		console.log(${this.name} is teaching)
+	}
+}
 
-const square = new Square(7);
-console.log(square.width); // Output: 7
-console.log(square.height); // Output: 7
-console.log(square.getArea()); // Output: 49
-console.log(square.getPerimeter()); // Output: 28
-
-
+window.Person = Person;
+window.Student = Student;
+window.Teacher = Teacher;
 
