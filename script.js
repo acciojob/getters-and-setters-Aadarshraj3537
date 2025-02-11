@@ -1,48 +1,49 @@
-class Person {
-  private _name: string;
-  private _age: number;
-
-  constructor(name: string, age: number) {
-    this._name = name;
-    this._age = age;
+class Rectangle {
+  constructor(width, height) {
+    if (!Number.isInteger(width) || !Number.isInteger(height) || width <= 0 || height <= 0) {
+      throw new Error("Width and height must be positive integers.");
+    }
+    this._width = width;
+    this._height = height;
   }
 
-  get name(): string {
-    return this._name;
+  get width() {
+    return this._width;
   }
 
-  get age(): number {
-    return this._age;
+  get height() {
+    return this._height;
   }
 
-  set age(age: number) {
-    this._age = age;
-  }
-}
-
-class Student extends Person {
-  study(): void {
-    console.log(`${this.name} is studying`);
+  getArea() {
+    return this._width * this._height;
   }
 }
 
-class Teacher extends Person {
-  teach(): void {
-    console.log(`${this.name} is teaching`);
+class Square extends Rectangle {
+  constructor(side) {
+    if (!Number.isInteger(side) || side <= 0) {
+      throw new Error("Side must be a positive integer.");
+    }
+    super(side, side);
+  }
+
+  getPerimeter() {
+    return 4 * this.width;
   }
 }
 
-// Test Cases
-const person = new Person("John", 25);
-console.log(person.name); // Output: John
+// Example usage
+const rectangle = new Rectangle(5, 10);
+console.log(rectangle.width); // Output: 5
+console.log(rectangle.height); // Output: 10
+console.log(rectangle.getArea()); // Output: 50
 
-person.age = 30;
-console.log(person.age); // Output: 30
+const square = new Square(7);
+console.log(square.width); // Output: 7
+console.log(square.height); // Output: 7
+console.log(square.getArea()); // Output: 49
+console.log(square.getPerimeter()); // Output: 28
 
-const student = new Student("Alice", 22);
-student.study(); // Output: Alice is studying
-
-const teacher = new Teacher("Bob", 40);
-teacher.teach(); // Output: Bob is teaching
 
 
